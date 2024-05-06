@@ -31,20 +31,18 @@ public class CompresorHuffman {
         }
     }
 
-// Método para contar las frecuencias de todos los caracteres presentes en el archivo de texto
-private static Map<Character, Integer> contarFrecuencias(String archivoEntrada) throws IOException {
-    Map<Character, Integer> frecuencias = new HashMap<>();
-    try (FileInputStream fis = new FileInputStream(archivoEntrada)) {
-        int caracter;
-        while ((caracter = fis.read()) != -1) {
-            char c = (char) caracter;
-            frecuencias.put(c, frecuencias.getOrDefault(c, 0) + 1);
+    // Método para contar las frecuencias de todos los caracteres presentes en el archivo de texto
+    private static Map<Character, Integer> contarFrecuencias(String archivoEntrada) throws IOException {
+        Map<Character, Integer> frecuencias = new HashMap<>();
+        try (FileInputStream fis = new FileInputStream(archivoEntrada)) {
+            int caracter;
+            while ((caracter = fis.read()) != -1) {
+                char c = (char) caracter;
+                frecuencias.put(c, frecuencias.getOrDefault(c, 0) + 1);
+            }
         }
+        return frecuencias;
     }
-    return frecuencias;
-}
-
-
 
     // Método para construir el árbol de Huffman a partir de las frecuencias
     private static ArbolHuffman construirArbolHuffman(Map<Character, Integer> frecuencias) {
@@ -88,7 +86,6 @@ private static Map<Character, Integer> contarFrecuencias(String archivoEntrada) 
             }
         }
     }
-    
 
     // Clase auxiliar para escribir bits en un archivo binario
     private static class BitOutputStream implements Closeable {
